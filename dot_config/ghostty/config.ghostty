@@ -1,0 +1,30 @@
+font-family = Iosevka Term
+font-family-bold = Iosevka Term
+font-style-bold = Bold
+font-size = 16
+font-feature = calt
+
+background = #242936
+palette = 1=#FF5252
+palette = 2=#C3D82C
+palette = 3=#FFC135
+palette = 4=#42A5F4
+palette = 6=#55CFE6
+split-divider-color = #55CFE6
+
+cursor-style = block
+cursor-style-blink = true
+#unfocused-split-opacity = 1
+adjust-cell-height = 4
+window-padding-x = 16
+window-padding-y = 16
+maximize = true
+
+keybind = ctrl+shift+arrow_up=new_split:up
+keybind = ctrl+shift+arrow_right=new_split:right
+keybind = ctrl+shift+arrow_down=new_split:down
+keybind = ctrl+shift+arrow_left=new_split:left
+keybind = alt+arrow_up=goto_split:up
+keybind = alt+arrow_right=goto_split:right
+keybind = alt+arrow_down=goto_split:down
+keybind = alt+arrow_left=goto_split:left

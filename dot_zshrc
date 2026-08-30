@@ -5,8 +5,6 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 autoload -U compinit && compinit
 source $ZSH/oh-my-zsh.sh
 
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
-
 [ -s "/home/julian/.bun/_bun" ] && source "/home/julian/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
