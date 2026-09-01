@@ -14,3 +14,17 @@
 
 [core]
 	editor = vim
+
+[fetch]
+	prune = true
+
+[core]
+	editor = vim
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  side-by-side = true

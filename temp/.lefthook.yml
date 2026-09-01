@@ -1,0 +1,66 @@
+# Replaces .pre-commit-config.yaml.
+#
+# The filename MUST stay dot-prefixed. A plain `lefthook.yml` at the source
+# root would be a chezmoi-managed target and get applied to ~/lefthook.yml,
+# the same way pkglist-explicit.txt lands in $HOME.
+#
+# Nothing is version-pinned: every tool runs from $PATH. chezmoi cannot
+# template this file (dot-prefixed source-root files are invisible to it), so
+# both machines read identical bytes and each supplies its own binaries.
+#
+# Groups that write the files another job reads are `piped: true`, i.e. serial.
+
+pre-commit:
+  parallel: true
+  jobs:
+    - name: python
+      group:
+        piped: true
+        jobs:
+          - name: ruff-check
+            glob: "*.py"
+            run: ruff check --fix {staged_files}
+            stage_fixed: true
+          - name: ruff-format
+            glob: "*.py"
+            run: ruff format {staged_files}
+            stage_fixed: true
+
+    - name: shell
+      group:
+        piped: true
+        jobs:
+          # serial: shfmt -w rewrites the very files shellcheck reads
+          - name: shellcheck
+            glob: "*.sh"
+            run: shellcheck {staged_files}
+          - name: shfmt
+            glob: "*.sh"
+            run: shfmt -i 2 -ci -bn -w {staged_files}
+            stage_fixed: true
+
+    - name: typescript
+      group:
+        piped: true
+        jobs:
+          - name: oxlint
+            glob: "*.ts"
+            run: oxlint {staged_files}
+          - name: oxfmt
+            glob: "*.ts"
+            run: oxfmt --write {staged_files}
+            stage_fixed: true
+
+    - name: json
+      glob: "*.json"
+      run: jq empty {staged_files}
+
+    - name: yaml
+      glob: "*.{yaml,yml}"
+      run: yq . {staged_files} > /dev/null
+
+    # Replaces trailing-whitespace + end-of-file-fixer. Check-only: ec never
+    # writes, so it cannot corrupt the ASCII-armored .age keys. The exemption
+    # lives in .editorconfig.
+    - name: editorconfig
+      run: ec {staged_files}

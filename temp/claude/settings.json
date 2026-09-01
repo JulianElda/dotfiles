@@ -1,0 +1,113 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git log *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git show *)",
+      "Bash(git branch *)",
+      "Bash(git remote -v)",
+      "Bash(git remote get-url *)",
+      "Bash(git add *)",
+      "Bash(git stash list *)",
+      "Bash(git stash show *)",
+      "Bash(git checkout -b *)",
+      "Bash(rg *)",
+      "Bash(fd *)",
+      "Bash(jq *)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr list *)",
+      "Bash(gh pr diff *)",
+      "Bash(gh issue view *)",
+      "Bash(gh issue list *)",
+      "Bash(gh repo view *)",
+      "Bash(gh run view *)",
+      "Bash(python3 ~/.claude/skills/daily-claude-reflection/scripts/collect_sessions.py --date *)",
+      "Bash(~/.claude/skills/hcp-fetch-logs/scripts/fetch-logs.py *)",
+      "Bash(~/.claude/skills/brainlabdev-ssh/scripts/vm-ssh.sh *)",
+      "Bash(./dior.py *)",
+      "Bash(~/.claude/skills/dior-api/scripts/dior.py *)",
+      "Bash(/home/juliuspolar/.claude/skills/dior-api/scripts/dior.py *)",
+      "Bash(./fhir.py *)",
+      "Bash(~/.claude/skills/brainlabdev-fhir/scripts/fhir.py *)",
+      "Bash(/home/juliuspolar/.claude/skills/brainlabdev-fhir/scripts/fhir.py *)",
+      "Bash(uv tool list *)",
+      "Bash(uvx ruff *)",
+      "Bash(uvx ty *)",
+      "Bash(uvx --with pyyaml ty *)",
+      "Read(//home/juliuspolar/elenchus/**)",
+      "Read(//home/juliuspolar/thelema/**)",
+      "Read(//home/juliuspolar/workspace/**)"
+    ],
+    "deny": [
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/.aws*)",
+      "Read(**/.ssh*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/.credentials.json)",
+      "Edit(**/.env)",
+      "Edit(**/.env.*)"
+    ],
+    "defaultMode": "auto"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "~/.claude/hooks/deny-exec-escapes.py", "timeout": 5 }
+        ]
+      }
+    ]
+  },
+  "model": "opus[1m]",
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "context7@claude-plugins-official": false,
+    "typescript-lsp@claude-plugins-official": true,
+    "receipts@claude-plugins-official": false
+  },
+  "effortLevel": "high",
+  "theme": "dark",
+  "outputStyle": "Explanatory",
+  "editorMode": "normal",
+  "autoMode": {
+    "soft_deny": [
+      "$defaults",
+      "Bash(gh pr create:*)",
+      "Bash(gh issue create:*)",
+      "Bash(gh pr comment:*)"
+    ],
+    "environment": [
+      "### Org-wide",
+      "**Organization**: snkeos (GitHub org — inferred from repo remotes under github.com/snkeos referenced in project skill docs; the working directory itself has no remotes)",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: Not queryable here — no git remote in this working directory (0 tracked files, no remotes). Assume private per shipped default",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured",
+      "**Default / protected branches**: Not queryable here — no git remote in this working directory",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Source control**: The trusted repo and its remote(s) only (no additional orgs configured) — this working directory has no remote configured",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured — config-scan bucket names found repo-wide (e.g. \"packer-ami-snkeos-dev\", \"packer-ami-snke-video\", \"trillian-cloudbuild-logs\") are config-derived, not usage-corroborated by the transcript-mining/host-contact sections, and are omitted per provenance rules (config-derived — not a confirmed upload destination; uploads of local data still require confirmation)",
+      "**Key internal services**: None configured",
+      "**Internal package registry**: brainlab.jfrog.io, npm.pkg.github.com (config-derived, not usage-corroborated)",
+      "**Sensitive data locations & audiences**: any file or store holding personal data, confidential business data, credentials, regulated data, or similarly sensitive material; preserve exact handles when known and share only with audiences cleared at the [named+specifics] bar — note the repo tree shows numerous .env/.env.* files and credential-adjacent paths (.claude/.credentials.json, .sonar/.../sonar-secrets-auth-cache) under sibling checkouts, not this working directory",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment (hyphen/underscore/dot-delimited — e.g. matches `prod-db`, not `producer`)",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development (Claude Code skills/config workflows, log querying, OIDC dev setup, API spec syncing, VEX/vulnerability triage — evidenced by ~/.claude/skills/*)",
+      "**Trusted repo**: The git repository the agent started in (/home/juliuspolar) — however this directory currently has 0 tracked files and no configured remote, so there is no verified trusted repo/remote to scope against yet",
+      "**Org-specific CLIs**: playwright-cli, gh (read-only per ~/.claude/CLAUDE.md — never write/create PRs, issues, comments unless explicitly asked)",
+      "No \"routine under <user>/ prefix\" qualifiers found in evidence"
+    ]
+  }
+}
