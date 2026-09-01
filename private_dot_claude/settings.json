@@ -1,6 +1,77 @@
 {
-  "model": "opus",
+  "permissions": {
+    "allow": [
+      "Bash(git log *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git show *)",
+      "Bash(git branch *)",
+      "Bash(git remote -v)",
+      "Bash(git remote get-url *)",
+      "Bash(git add *)",
+      "Bash(git stash list *)",
+      "Bash(git stash show *)",
+      "Bash(git checkout -b *)",
+      "Bash(rg *)",
+      "Bash(fd *)",
+      "Bash(jq *)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr list *)",
+      "Bash(gh pr diff *)",
+      "Bash(gh issue view *)",
+      "Bash(gh issue list *)",
+      "Bash(gh repo view *)",
+      "Bash(gh run view *)",
+      "Bash(uv tool list *)",
+      "Bash(uvx ruff *)",
+      "Bash(uvx ty *)",
+      "Bash(uvx --with pyyaml ty *)"
+    ],
+    "deny": [
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/.aws*)",
+      "Read(**/.ssh*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/.credentials.json)",
+      "Edit(**/.env)",
+      "Edit(**/.env.*)"
+    ],
+    "defaultMode": "auto"
+  },
+  "model": "opus[1m]",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/deny-exec-escapes.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "context7@claude-plugins-official": false,
+    "typescript-lsp@claude-plugins-official": true,
+    "receipts@claude-plugins-official": false
+  },
+  "outputStyle": "Explanatory",
+  "effortLevel": "medium",
   "theme": "dark",
+  "editorMode": "normal",
   "agentPushNotifEnabled": true,
-  "effortLevel": "xhigh"
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "medium"
+    }
+  }
 }
