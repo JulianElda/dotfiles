@@ -5,19 +5,12 @@
 
   home.packages = [ pkgs.zsh-completions ];
 
+  programs.starship.enable = true;
   programs.zsh = {
     enable = true;
-    autosuggestions.enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-
-    ohMyZsh = {
-      enable = true;
-      plugins = [ "git" "sudo" ];
-      theme = "danbo";
-      custom = "${config.home.homeDirectory}/.oh-my-zsh/custom";
-    };
 
     initContent = ''
       [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
