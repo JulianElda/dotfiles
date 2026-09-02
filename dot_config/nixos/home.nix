@@ -3,7 +3,60 @@
 {
   home.stateVersion = "26.05";
 
-  home.packages = [ pkgs.zsh-completions ];
+  home.packages = with pkgs; [
+    chezmoi
+    ghostty
+    zsh-completions
+
+    firefox
+    firefox-devedition
+    chromium
+    brave
+
+    noto-fonts
+    iosevka
+    ibm-plex
+
+    claude-code
+    github-cli
+    vscodium
+
+    python3
+    uv
+    go
+    typescript-go
+
+    ast-grep
+    sd
+    jq
+    yq
+    age
+    delta
+    lefthook
+    ripgrep
+    fd
+    miller
+    poppler-utils
+    xh
+    actionlint
+    editorconfig-checker
+    goreleaser
+    bun
+
+    audacious
+    vlc
+
+    cryptomator
+    keepassxc
+
+    kdePackages.ark
+    kdePackages.kate
+    kdePackages.kcalc
+    kdePackages.okular
+    kdePackages.partitionmanager
+    kdePackages.skanpage
+    kdePackages.spectacle
+  ];
 
   programs.starship.enable = true;
   programs.zsh = {

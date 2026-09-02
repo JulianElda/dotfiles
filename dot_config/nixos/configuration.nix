@@ -91,60 +91,6 @@
     description = "Julian";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
-    packages = with pkgs; [
-      firefox
-      firefox-devedition
-      chromium
-      brave
-
-      noto-fonts
-      iosevka
-      ibm-plex
-
-      ghostty
-      claude-code
-      github-cli
-      vscodium
-
-      chezmoi
-
-      python3
-      uv
-      go
-
-      ast-grep
-      sd
-      jq
-      yq
-      age
-      delta
-      lefthook
-      ripgrep
-      fd
-      miller
-      poppler-utils
-      xh
-      actionlint
-      editorconfig-checker
-      goreleaser
-      bun
-      typescript-go
-
-      audacious
-      vlc
-
-      cryptomator
-      keepassxc
-
-      kdePackages.ark
-      kdePackages.kate
-      kdePackages.kcalc
-      kdePackages.okular
-      kdePackages.partitionmanager
-      kdePackages.skanpage
-      kdePackages.spectacle
-
-    ];
   };
 
   programs.zsh.enable = true;

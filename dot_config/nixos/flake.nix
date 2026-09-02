@@ -2,7 +2,7 @@
   description = "nixos_t480 NixOS";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; # nixos-26.05 once it branches, to match your stateVersion
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";
