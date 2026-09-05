@@ -17,8 +17,7 @@
 
   hardware.bluetooth.enable = true;
 
-  # Define your hostname.
-  networking.hostName = "nixos_t480";
+  # Hostname is set per host (see configuration-t480.nix).
   networking.networkmanager.enable = true;
 
   # Set your time zone.

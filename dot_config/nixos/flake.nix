@@ -20,7 +20,7 @@
     nixosConfigurations.nixos_t480 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./configuration.nix
+        ./configuration-t480.nix
 
         home-manager.nixosModules.home-manager
         {
