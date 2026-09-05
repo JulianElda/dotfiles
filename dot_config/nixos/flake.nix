@@ -27,7 +27,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "hm-backup";
-          home-manager.users.julian = import ./home.nix;
+          home-manager.users.julian = import ./home-t480.nix;
           home-manager.sharedModules = [
             plasma-manager.homeModules.plasma-manager
           ];

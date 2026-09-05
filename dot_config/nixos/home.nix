@@ -25,7 +25,7 @@
     uv
     go
     typescript-go
-
+    ocrmypdf
     ast-grep
     sd
     jq
@@ -79,12 +79,13 @@
 
   programs.plasma = {
     enable = true;
+    # overrideConfig = true;
 
     workspace = {
       colorScheme = "BreezeDark";
       # theme = "breeze-dark";
       # iconTheme = "breeze-dark";
-
+      wallpaper = "/home/julian/Pictures/wallpaper.jpg";
       cursor.size = 48;
     };
 
@@ -98,19 +99,30 @@
       rows = 1;
     };
 
-    # TODO: rc2nix cannot capture panels — define yours by hand here.
-    # panels = [
-    #   {
-    #     location = "bottom";
-    #     widgets = [
-    #       "org.kde.plasma.kickoff"
-    #       "org.kde.plasma.icontasks"
-    #       "org.kde.plasma.marginsseparator"
-    #       { systemTray.items.shown = [ "org.kde.plasma.volume" "org.kde.plasma.networkmanagement" ]; }
-    #       "org.kde.plasma.digitalclock"
-    #     ];
-    #   }
-    # ];
+    panels = [
+      {
+        location = "left";
+
+        widgets = [
+          {
+            kickoff = {
+              icon = "/home/julian/Dropbox/Pics/elenor_idle.png";
+              sortAlphabetically = false;
+            };
+          }
+
+          {
+            iconTasks = {
+              launchers = [ ];
+            };
+          }
+
+          "org.kde.plasma.marginsseparator"
+          "org.kde.plasma.systemtray"
+          "org.kde.plasma.digitalclock"
+        ];
+      }
+    ];
 
     shortcuts = {
       "KDE Keyboard Layout Switcher"."Switch to Last-Used Keyboard Layout" = "Meta+Alt+L";
@@ -185,18 +197,8 @@
       mediacontrol.seekforwardmedia = "Media Fast Forward";
       mediacontrol.stopmedia = "Media Stop";
 
-      org_kde_powerdevil."Decrease Keyboard Brightness" = "Keyboard Brightness Down";
-      org_kde_powerdevil."Decrease Screen Brightness" = "Monitor Brightness Down";
-      org_kde_powerdevil."Decrease Screen Brightness Small" = "Shift+Monitor Brightness Down";
-      org_kde_powerdevil.Hibernate = "Hibernate";
-      org_kde_powerdevil."Increase Keyboard Brightness" = "Keyboard Brightness Up";
-      org_kde_powerdevil."Increase Screen Brightness" = "Monitor Brightness Up";
-      org_kde_powerdevil."Increase Screen Brightness Small" = "Shift+Monitor Brightness Up";
       org_kde_powerdevil.PowerDown = "Power Down";
       org_kde_powerdevil.PowerOff = "Power Off";
-      org_kde_powerdevil.Sleep = "Sleep";
-      org_kde_powerdevil."Toggle Keyboard Backlight" = "Keyboard Light On/Off";
-      org_kde_powerdevil.powerProfile = [ "Battery" "Meta+B" ];
 
       plasmashell."activate application launcher" = [ "Meta" "Alt+F1" ];
       plasmashell."activate task manager entry 1" = "Meta+1";
