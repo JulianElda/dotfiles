@@ -40,7 +40,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "opus[1m]",
+  "model": "opus",
   "hooks": {
     "PreToolUse": [
       {
@@ -66,12 +66,12 @@
   },
   "outputStyle": "Explanatory",
   "effortLevel": "medium",
-  "theme": "dark",
-  "editorMode": "normal",
-  "agentPushNotifEnabled": true,
   "modelSettings": {
     "claude-opus-5": {
-      "effortLevel": "medium"
+      "effortLevel": "high"
     }
-  }
+  },
+  "theme": "dark",
+  "editorMode": "normal",
+  "agentPushNotifEnabled": true
 }

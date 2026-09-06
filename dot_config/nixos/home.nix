@@ -31,6 +31,7 @@
     jq
     yq
     age
+    gocryptfs
     delta
     lefthook
     ripgrep
@@ -42,6 +43,7 @@
     editorconfig-checker
     goreleaser
     bun
+    nodejs_26
 
     audacious
     vlc
@@ -56,6 +58,7 @@
     kdePackages.partitionmanager
     kdePackages.skanpage
     kdePackages.spectacle
+    kdePackages.plasma-vault
   ];
 
   programs.starship.enable = true;
@@ -70,7 +73,12 @@
     '';
   };
 
-  home.sessionVariables.BUN_INSTALL = "$HOME/.bun";
+  home.sessionVariables = {
+    BUN_INSTALL = "$HOME/.bun";
+    PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
+    PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS = "true";
+  };
+  
   home.sessionPath = [
     "$HOME/.bun/bin"
     "$HOME/.local/bin"
@@ -108,6 +116,11 @@
             kickoff = {
               icon = "/home/julian/Dropbox/Pics/elenor_idle.png";
               sortAlphabetically = false;
+              sidebarPosition = "left";
+              favoritesDisplayMode = "grid";
+              applicationsDisplayMode = "list";
+              showButtonsFor = "power";
+              showActionButtonCaptions = true;
             };
           }
 
@@ -119,7 +132,16 @@
 
           "org.kde.plasma.marginsseparator"
           "org.kde.plasma.systemtray"
-          "org.kde.plasma.digitalclock"
+          {
+            digitalClock = {
+              date.enable = false;
+              time = {
+                showSeconds = "never";
+                format = "24h";
+              };
+              calendar.showWeekNumbers = true;
+            };
+          }
         ];
       }
     ];

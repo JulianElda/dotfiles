@@ -15,6 +15,8 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  boot.tmp.useTmpfs = true;
+
   hardware.bluetooth.enable = true;
 
   # Hostname is set per host (see configuration-t480.nix).
@@ -62,10 +64,9 @@
     unzip
     curl
     wget
-    docker
-    docker-compose
     gutenprint
     ipp-usb
+    docker-compose
   ];
   environment.plasma6.excludePackages = [
     pkgs.kdePackages.elisa
@@ -88,7 +89,7 @@
   users.users."julian" = {
     isNormalUser = true;
     description = "Julian";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.zsh;
   };
 
