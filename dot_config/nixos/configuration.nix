@@ -4,6 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./chromium.nix
     ];
 
   system.stateVersion = "26.05";
