@@ -1,5 +1,5 @@
 {
-  description = "nixos_t480 NixOS";
+  description = "t480 NixOS";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -17,21 +17,29 @@
   };
 
   outputs = { self, nixpkgs, home-manager, plasma-manager, ... }: {
-    nixosConfigurations.nixos_t480 = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.t480 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./configuration-t480.nix
 
         home-manager.nixosModules.home-manager
-        {
+        ({ pkgs, ... }: {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "hm-backup";
+          # Move any file that would block activation into a timestamped backup
+          # dir instead of a fixed *.hm-backup suffix, which can only hold one
+          # generation and otherwise deadlocks every future rebuild.
+          home-manager.backupCommand = "${pkgs.writeShellScript "hm-backup-file" ''
+            set -eu
+            dest="$HOME/.local/state/home-manager/file-backups/$(date +%Y%m%dT%H%M%S)"
+            mkdir -p "$dest"
+            mv "$1" "$dest/$(basename "$1")"
+          ''}";
           home-manager.users.julian = import ./home-t480.nix;
           home-manager.sharedModules = [
             plasma-manager.homeModules.plasma-manager
           ];
-        }
+        })
 
       ];
     };

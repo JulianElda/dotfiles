@@ -4,6 +4,31 @@
   imports = [ ./home.nix ];
 
   programs.plasma = {
+    powerdevil = {
+      # On AC: never suspend, never blank, never dim. Just lock on lid close.
+      AC = {
+        autoSuspend.action = "nothing";
+        whenLaptopLidClosed = "lockScreen";
+        dimDisplay.enable = false;
+        turnOffDisplay.idleTimeout = "never";
+      };
+      # On battery: dim after 2 min, screen off after 5 min, sleep after 10 min.
+      battery = {
+        autoSuspend.action = "sleep";
+        autoSuspend.idleTimeout = 600;
+        whenLaptopLidClosed = "lockScreen";
+        dimDisplay.idleTimeout = 120;
+        turnOffDisplay.idleTimeout = 300;
+      };
+      lowBattery = {
+        autoSuspend.action = "sleep";
+        autoSuspend.idleTimeout = 600;
+        whenLaptopLidClosed = "lockScreen";
+        dimDisplay.idleTimeout = 120;
+        turnOffDisplay.idleTimeout = 300;
+      };
+    };
+
     # Backlight, suspend and battery keys present on the laptop keyboard.
     shortcuts = {
       org_kde_powerdevil."Decrease Keyboard Brightness" = "Keyboard Brightness Down";

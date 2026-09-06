@@ -3,7 +3,7 @@
 {
   imports = [ ./configuration.nix ];
 
-  networking.hostName = "nixos_t480";
+  networking.hostName = "t480";
 
   # Battery charge thresholds: start charging below 40 %, stop at 80 %.
   # thinkpad_acpi exposes these for both the internal (BAT0) and bay (BAT1)

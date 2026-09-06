@@ -69,8 +69,15 @@
     ipp-usb
     docker-compose
   ];
+  
   environment.plasma6.excludePackages = [
     pkgs.kdePackages.elisa
+  ];
+
+  fonts.packages = with pkgs; [
+    noto-fonts
+    iosevka
+    ibm-plex
   ];
 
   users.defaultUserShell = pkgs.zsh;
