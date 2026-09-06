@@ -4,23 +4,33 @@
   home.stateVersion = "26.05";
 
   home.packages = with pkgs; [
-    chezmoi
-    ghostty
-    zsh-completions
-
     firefox
     firefox-devedition
     chromium
     brave
+    vscodium
+    audacious
+    vlc
+    cryptomator
+    dropbox
+    keepassxc
+    kdePackages.ark
+    kdePackages.kate
+    kdePackages.kcalc
+    kdePackages.okular
+    kdePackages.partitionmanager
+    kdePackages.skanpage
+    kdePackages.spectacle
+    kdePackages.plasma-vault
 
+    chezmoi
+    ghostty
+    zsh-completions
     noto-fonts
     iosevka
     ibm-plex
-
     claude-code
     github-cli
-    vscodium
-
     python3
     uv
     go
@@ -44,21 +54,6 @@
     goreleaser
     bun
     nodejs_26
-
-    audacious
-    vlc
-
-    cryptomator
-    keepassxc
-
-    kdePackages.ark
-    kdePackages.kate
-    kdePackages.kcalc
-    kdePackages.okular
-    kdePackages.partitionmanager
-    kdePackages.skanpage
-    kdePackages.spectacle
-    kdePackages.plasma-vault
   ];
 
   programs.starship.enable = true;
@@ -97,9 +92,54 @@
       cursor.size = 48;
     };
 
+    fonts = {
+      general = {
+        family  = "IBM Plex Sans";
+        pointSize = 12;
+      };
+      fixedWidth = {
+        family  = "IBM Plex Mono";
+        pointSize = 12;
+      };
+      small = {
+        family  = "IBM Plex Sans";
+        pointSize = 10;
+      };
+      toolbar = {
+        family  = "IBM Plex Sans";
+        pointSize = 12;
+      };
+      menu = {
+        family  = "IBM Plex Sans";
+        pointSize = 12;
+      };
+      windowTitle = {
+        family  = "IBM Plex Sans";
+        pointSize = 12;
+      };
+    };
+
     kscreenlocker = {
       autoLock = false;
       timeout = 0;
+      appearance = {
+        alwaysShowClock = true;
+        wallpaper = "/home/julian/Pictures/lockscreen.jpg";
+      };
+    };
+
+    kwin.nightLight = {
+      enable = true;
+      location = {
+        latitude = "48.137";
+        longitude = "11.576";
+      };
+      mode = "location";
+      temperature = {
+        day = 6500;
+        night = 4500;
+      };
+      transitionTime = 5;
     };
 
     kwin.virtualDesktops = {
