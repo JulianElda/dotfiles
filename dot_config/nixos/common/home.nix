@@ -8,7 +8,7 @@
     ./terminal.nix
   ];
 
-  home.stateVersion = "26.05";
+  # home.stateVersion is per host; see hosts/<host>/home.nix.
 
   fonts.fontconfig.enable = false;
 

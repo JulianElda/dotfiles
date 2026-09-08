@@ -1,9 +1,15 @@
 { ... }:
 
 {
-  imports = [ ./configuration.nix ];
+  imports = [
+    ../../common/configuration.nix
+    ./hardware.nix
+  ];
 
   networking.hostName = "t480";
+
+  # The NixOS release this machine was installed with. Never copy to a new host.
+  system.stateVersion = "26.05";
 
   # Battery charge thresholds: start charging below 40 %, stop at 80 %.
   # thinkpad_acpi exposes these for both the internal (BAT0) and bay (BAT1)

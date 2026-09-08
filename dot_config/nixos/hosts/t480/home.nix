@@ -1,7 +1,9 @@
 { ... }:
 
 {
-  imports = [ ./home.nix ];
+  imports = [ ../../common/home.nix ];
+
+  home.stateVersion = "26.05";
 
   programs.plasma = {
     powerdevil = {

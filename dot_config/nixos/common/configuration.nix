@@ -1,13 +1,11 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./chromium.nix
-    ];
+  imports = [
+    ./chromium.nix
+  ];
 
-  system.stateVersion = "26.05";
+  # Hardware scan and system.stateVersion are per host; see hosts/<host>/default.nix.
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -20,7 +18,7 @@
 
   hardware.bluetooth.enable = true;
 
-  # Hostname is set per host (see configuration-t480.nix).
+  # Hostname is set per host (see hosts/<host>/default.nix).
   networking.networkmanager.enable = true;
 
   # Set your time zone.

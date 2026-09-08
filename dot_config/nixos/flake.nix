@@ -1,5 +1,5 @@
 {
-  description = "t480 NixOS";
+  description = "NixOS configurations";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -20,7 +20,7 @@
     nixosConfigurations.t480 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./configuration-t480.nix
+        ./hosts/t480/configuration.nix
 
         home-manager.nixosModules.home-manager
         ({ pkgs, ... }: {
@@ -35,7 +35,7 @@
             mkdir -p "$dest"
             mv "$1" "$dest/$(basename "$1")"
           ''}";
-          home-manager.users.julian = import ./home-t480.nix;
+          home-manager.users.julian = import ./hosts/t480/home.nix;
           home-manager.sharedModules = [
             plasma-manager.homeModules.plasma-manager
           ];
