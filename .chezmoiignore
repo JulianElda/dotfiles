@@ -1,0 +1,4 @@
+# Repo documentation and bootstrap tooling: these live in the repo, not in $HOME.
+README.md
+install.sh
+installation-checklist.md
