@@ -3,14 +3,15 @@ font-family-bold = Iosevka Term
 font-style-bold = Bold
 font-size = 16
 font-feature = calt
+theme = Ayu Mirage
 
-background = #242936
-palette = 1=#FF5252
-palette = 2=#C3D82C
-palette = 3=#FFC135
-palette = 4=#42A5F4
-palette = 6=#55CFE6
-split-divider-color = #55CFE6
+# background = #242936
+# palette = 1=#FF5252
+# palette = 2=#C3D82C
+# palette = 3=#FFC135
+# palette = 4=#42A5F4
+# palette = 6=#55CFE6
+# split-divider-color = #55CFE6
 
 cursor-style = block
 cursor-style-blink = true
