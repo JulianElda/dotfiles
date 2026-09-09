@@ -4,14 +4,14 @@
 {
   home.packages = with pkgs; [
     # browsers
-    firefox
-    firefox-devedition
-    chromium
     brave
+    chromium
+    firefox
 
     # editors & terminal
-    vscodium
     ghostty
+    helix
+    vscodium
 
     # media
     audacious
@@ -21,12 +21,12 @@
     cryptomator
     dropbox
     keepassxc
-    libreoffice
 
     # kde apps
     kdePackages.ark
     kdePackages.kate
     kdePackages.kcalc
+    kdePackages.calligra
     kdePackages.okular
     kdePackages.partitionmanager
     kdePackages.skanpage
