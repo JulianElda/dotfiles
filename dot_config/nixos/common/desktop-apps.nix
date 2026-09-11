@@ -12,6 +12,7 @@
     ghostty
     helix
     vscodium
+    zed-editor
 
     # media
     audacious

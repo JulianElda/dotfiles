@@ -1,0 +1,81 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    },
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore"
+    },
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-shift-up": [
+        "editor::SelectPrevious",
+        {
+          "replace_newest": false,
+        },
+      ],
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-shift-up": "editor::LineUp",
+    },
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-up": "editor::LineUp",
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-shift-down": "editor::LineDown",
+    },
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-down": "editor::LineDown",
+    },
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-d": [
+        "editor::SelectNext",
+        {
+          "replace_newest": false,
+        },
+      ],
+    },
+  },
+  {
+    "context": "!AcpThread > Editor && mode == full",
+    "unbind": {
+      "ctrl-:": "editor::ToggleInlayHints",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      // The `ö` key is non-ASCII, so Zed on Linux resolves it to the US
+      // QWERTY key at the same position (`;`); with shift that is `:`.
+      "ctrl-:": "workspace::NewCenterTerminal",
+    },
+  },
+]

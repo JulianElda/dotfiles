@@ -1,0 +1,123 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "drag_and_drop_selection": {
+    "enabled": false,
+  },
+  "hover_popover_sticky": false,
+  "hover_popover_enabled": false,
+  "window_decorations": "client",
+  "bottom_dock_layout": "contained",
+  "tab_bar": {
+    "show_tab_bar_buttons": true,
+    "show_nav_history_buttons": false,
+  },
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false,
+    "selections_menu": false,
+    "code_actions": false,
+    "agent_review": false,
+  },
+  "agent": {
+    "button": false,
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "title_bar": {
+    "show_user_picture": false,
+    "show_user_menu": true,
+    "show_sign_in": false,
+    "show_onboarding_banner": false,
+  },
+  "debugger": {
+    "button": false,
+  },
+  "search": {
+    "button": false,
+  },
+  "diagnostics": {
+    "button": false,
+  },
+  "status_bar": {
+    "cursor_position_button": false,
+    "active_language_button": true,
+  },
+  "selection_highlight": true,
+  "rounded_selection": true,
+  "current_line_highlight": "gutter",
+  "hide_mouse": "never",
+  "markdown_preview_code_font_family": "IBM Plex Mono",
+  "markdown_preview_font_family": "IBM Plex Sans",
+  "ui_font_family": "IBM Plex Sans",
+  "icon_theme": {
+    "mode": "system",
+    "light": "Zed (Default)",
+    "dark": "Material Icon Theme",
+  },
+  "auto_update": false,
+  "on_last_window_closed": "quit_app",
+  "when_closing_with_no_tabs": "keep_window_open",
+  "terminal": {
+    "toolbar": {
+      "breadcrumbs": false,
+    },
+    "font_size": 18.0,
+    "button": false,
+    "font_family": "Iosevka SS13",
+    "line_height": {
+      "custom": 1.1,
+    },
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+  "project_panel": {
+    "dock": "left",
+    "button": false,
+    "git_status": false,
+    "auto_reveal_entries": false,
+    "auto_fold_dirs": false,
+    "show_diagnostics": "off",
+  },
+  "outline_panel": {
+    "git_status": false,
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false,
+    },
+  },
+  "tabs": {
+    "git_status": false,
+    "show_close_button": "hidden",
+  },
+  "sticky_scroll": {
+    "enabled": false,
+  },
+  "minimap": {
+    "show": "never",
+  },
+  "cursor_blink": true,
+  "buffer_font_family": "Iosevka SS13",
+  "format_on_save": "on",
+  "indent_guides": {
+    "enabled": false,
+  },
+  "tab_size": 2,
+  "base_keymap": "VSCode",
+  "ui_font_size": 18,
+  "buffer_font_size": 18.0,
+  "theme": {
+    "mode": "system",
+    "light": "Ayu Light",
+    "dark": "Ayu Mirage",
+  },
+}
