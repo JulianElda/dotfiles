@@ -41,6 +41,7 @@
     "defaultMode": "auto"
   },
   "model": "opus",
+  "includeCoAuthoredBy": true,
   "hooks": {
     "PreToolUse": [
       {

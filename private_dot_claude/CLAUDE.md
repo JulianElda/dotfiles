@@ -2,8 +2,8 @@
 
 ## Git
 
-- Commit messages must be a single line (conventional commit title only) — no body, no footer.
-- Never add a `Co-Authored-By` trailer.
+- Commit messages must be a single line (conventional commit title only) — no
+  body, apart from the attribution trailers Claude Code appends.
 
 ## System Tools
 
