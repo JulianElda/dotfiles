@@ -21,7 +21,7 @@
     goreleaser
 
     # typescript
-    typescript-go
+    typescript
 
     # pdf & ocr
     ocrmypdf
