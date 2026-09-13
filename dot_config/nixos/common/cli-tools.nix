@@ -37,6 +37,8 @@
     python3
     uv
     go
+    golangci-lint
+    just
 
     # data
     jq
