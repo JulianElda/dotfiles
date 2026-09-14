@@ -20,6 +20,16 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
+    # Interactive shells only; scripts still get the real coreutils. `\ls` or
+    # `command cat` bypasses an alias when the original flags are needed.
+    shellAliases = {
+      ls = "eza --group-directories-first";
+      # bat already acts like cat when piped; this keeps it pager- and
+      # decoration-free in the terminal too, leaving only the highlighting.
+      cat = "bat --paging=never --style=plain";
+      du = "dust";
+    };
+
     history = {
       size = 100000;
       save = 100000;
