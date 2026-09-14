@@ -101,6 +101,10 @@
   };
 
   programs.zsh.enable = true;
+  # home-manager already runs compinit in ~/.zshrc; the global call in
+  # /etc/zshrc ran its ~25ms security audit a second time on every shell start.
+  # Completions (nix-zsh-completions, /share/zsh linking) stay enabled.
+  programs.zsh.enableGlobalCompInit = false;
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     stdenv.cc.cc.lib
