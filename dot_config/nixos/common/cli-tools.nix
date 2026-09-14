@@ -27,6 +27,11 @@
     # file manager
     yazi
 
+    # modern coreutils replacements
+    bat # cat
+    eza # ls
+    dust # du
+
     # language servers (helix); oxlint runs per repo via bunx
     typescript-language-server
     svelte-language-server
