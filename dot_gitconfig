@@ -26,6 +26,23 @@
   # --mouse makes the wheel scroll the pager, not the terminal's scrollback
   pager = less -FR --mouse --wheel-lines=3
 
+# difftastic is opt-in (`git difft`, `git difftool`), not diff.external: its
+# output is not a valid patch and would break `git apply` and `git add -p`.
+[diff]
+  tool = difftastic
+
+[difftool]
+  prompt = false
+
+[difftool "difftastic"]
+  cmd = difft \"$LOCAL\" \"$REMOTE\"
+
+[pager]
+  difftool = true
+
+[alias]
+  difft = -c diff.external=difft -c core.pager='less -FR --mouse' diff
+
 [merge]
   conflictStyle = zdiff3
 

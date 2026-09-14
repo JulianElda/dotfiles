@@ -15,6 +15,7 @@
 
     # git, ci & release
     delta
+    difftastic
     lefthook
     actionlint
     editorconfig-checker
