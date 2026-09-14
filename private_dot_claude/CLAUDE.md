@@ -68,3 +68,7 @@ Dotfiles are managed with `chezmoi`. The source repo is `~/.local/share/chezmoi`
   rename or hand-create source files; let `chezmoi add` derive the name.
 - After editing any managed file, run `chezmoi add` on it before finishing; leaving
   `chezmoi status` dirty means the next `chezmoi apply` silently reverts the work.
+- bat's theme (`~/.config/bat/themes/ayu-mirage.tmTheme`) only takes effect once
+  compiled into `~/.cache/bat`, which chezmoi does not manage. Run `bat cache --build`
+  after adding or changing a theme, on a fresh machine after `chezmoi apply`, and
+  when bat warns about an outdated cache after a nixpkgs update.
