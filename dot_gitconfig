@@ -13,7 +13,7 @@
   allowedSignersFile = ~/.ssh/allowed_signers
 
 [core]
-	editor = vim
+	editor = hx
   pager = delta
 
 [interactive]
