@@ -7,49 +7,76 @@
 
 ## System Tools
 
+Prefer the Rust tools over their classic counterparts: `rg` over `grep`, `fd` over
+`find`, `sd` over `sed`, `xh` over `curl`, `dust` over `du`, `hyperfine` over `time`.
+
+Interactive zsh aliases `ls` to `eza` and `cat` to `bat`; use `\ls`, `\cat` or
+`command ls` when exact coreutils output or flags matter.
+
+### Search & Edit
+
+- `rg` (ripgrep) — content search
+- `fd` — file finder
+- `sd` — find & replace (plain regex syntax, no `sed` escaping)
+- `ast-grep` — structural search & rewrite by syntax tree
+
 ### Languages & Runtimes
 
-- `node`
-- `npm` / `npx`
 - `bun` / `bunx` — prefer over `node`, `npm`, and `npx`
-- `python` / `python3`
+- `node` / `npm` / `npx`
+- `tsc` (typescript)
 - `uv` / `uvx` — Python package manager and tool runner; `uvx ruff` (lint/format)
   and `uvx ty` (type check) are fetched on demand, not installed
-- `go`
+- `python` / `python3`
+- `go`, `golangci-lint`
+
+### Build, Test & Benchmark
+
+- `just` — task runner; check for a `justfile` before guessing commands
+- `hyperfine` — command benchmarking (`hyperfine --warmup 3 'cmd a' 'cmd b'`)
+
+### Git & CI
+
+- `git`
+- `gh` (GitHub CLI) — read-only; never write/create (PRs, issues, comments, etc.) unless explicitly asked
+- `difft` (difftastic) — structural diff; `git difft` for a syntax-aware `git diff`
+- `lefthook` — git hooks runner (`lefthook run pre-commit`)
+- `actionlint` — GitHub Actions workflow linter
+- `editorconfig-checker` — verify files against `.editorconfig`
+- `goreleaser` — `goreleaser check` validates `.goreleaser.yaml`
+
+### Data & HTTP
+
+- `jq`
+- `yq` / `xq` — YAML / XML
+- `mlr` (miller) — CSV/TSV
+- `xh` — HTTP client
+- `curl`
+
+### Documents
+
+- `pdftotext`
+- `ocrmypdf` — add a text layer to scanned PDFs before `pdftotext`
+
+### Files & System
+
+- `dust` — disk usage (not a `du` drop-in: `-s` is apparent size, `-d` is depth)
+- `wl-copy` / `wl-paste` — Wayland clipboard. `wl-copy` forks a process that holds
+  inherited stdout open, so redirect it (`… | wl-copy >/dev/null 2>&1`) or the
+  command hangs.
 
 ### Containers & Infrastructure
 
 - `docker`
 - `docker compose`
 
-### Data & Databases
-
-- `jq`
-- `yq`
-- `xq`
-- `mlr` (miller)
-
-### Media
-
-- `pdftotext`
-
-### Dev Utilities
-
-- `ast-grep`
-- `sd`
-- `xh`
-- `git`
-- `gh` (GitHub CLI) — read-only; never write/create (PRs, issues, comments, etc.) unless explicitly asked
-- `rg` (ripgrep)
-- `fd` (file finder)
-- `curl`
-
 ## System Configuration
 
 NixOS, so the system is declarative — packages cannot be installed imperatively.
 
 - The config flake is `~/.config/nixos`, **not** `/etc/nixos`.
-- User tools are declared in `home.packages` in `~/.config/nixos/home.nix`.
+- User tools are declared in `home.packages` in
+  `~/.config/nixos/common/cli-tools.nix` (CLI) and `common/desktop-apps.nix` (GUI).
 - Rebuild: `sudo nixos-rebuild switch --flake ~/.config/nixos`
 - `sudo` is password-gated and there is no TTY, so rebuilds cannot be run
   unattended — make the edit, then ask the user to run the rebuild.
