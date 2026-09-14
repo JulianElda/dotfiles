@@ -41,6 +41,16 @@
       bindkey '^[OA' up-line-or-beginning-search
       bindkey '^[[B' down-line-or-beginning-search
       bindkey '^[OB' down-line-or-beginning-search
+
+      # y: run yazi, then cd the shell to the directory it was quit in. A child
+      # process cannot change its parent's cwd, so yazi writes it to a file.
+      y() {
+        local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+        command yazi "$@" --cwd-file="$tmp"
+        IFS= read -r -d "" cwd < "$tmp"
+        [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+        rm -f -- "$tmp"
+      }
     '';
   };
 }
