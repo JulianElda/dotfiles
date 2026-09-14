@@ -7,7 +7,6 @@ $directory\
 $git_branch\
 $git_state\
 $git_status\
-$cmd_duration\
 $line_break\
 $character"""
 
@@ -36,9 +35,6 @@ stashed = ""
 [character]
 success_symbol = "[\\$](green)"
 error_symbol = "[\\$](red)"
-
-[cmd_duration]
-min_time = 10_000
 
 [status]
 disabled = false
