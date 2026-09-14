@@ -1,1 +1,40 @@
 theme = "ayu_mirage"
+
+[editor]
+color-modes = true
+cursorline = true
+# Always show a short diagnostic at the end of each line, and the full message
+# under the cursor line.
+end-of-line-diagnostics = "hint"
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
+
+[editor.statusline]
+right = ["diagnostics", "selections", "register", "file-encoding"]
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.indent-guides]
+render = true
+
+[editor.soft-wrap]
+enable = true
+
+# Ctrl-y: browse with yazi and open the pick as a buffer. yazi draws straight to
+# /dev/tty, so `insert-output` is really just "block and hand over the terminal".
+# Cancelling yazi leaves the chooser file absent, so fall back to the current
+# buffer -- a no-op instead of an `:open` with no argument.
+[keys.normal]
+C-y = [
+  ':sh rm -f $HOME/.cache/hx-yazi-chooser',
+  ':insert-output yazi "%{buffer_name}" --chooser-file=$HOME/.cache/hx-yazi-chooser',
+  ':open %sh{cat $HOME/.cache/hx-yazi-chooser 2>/dev/null || echo "%{buffer_name}"}',
+  ':redraw',
+]
