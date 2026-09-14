@@ -13,6 +13,9 @@
   fonts.fontconfig.enable = false;
 
   home.sessionVariables = {
+    # Most tools check $VISUAL before $EDITOR, so set both; nixpkgs names helix `hx`.
+    VISUAL = "hx";
+    EDITOR = "hx";
     BUN_INSTALL = "$HOME/.bun";
     PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
     PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS = "true";
