@@ -30,6 +30,13 @@ Interactive zsh aliases `ls` to `eza` and `cat` to `bat`; use `\ls`, `\cat` or
 - `python` / `python3`
 - `go`, `golangci-lint`
 
+### Shell Scripts
+
+- `shellcheck` — lint every shell script you write or edit before finishing
+  (`shellcheck -s bash script.sh`; zsh is unsupported, so skip zsh-only files)
+- `shfmt` — format shell scripts (`shfmt -d` to diff, `-w` to write); match the
+  file's existing indentation (`-i 2`, `-i 4`) rather than reformatting wholesale
+
 ### Build, Test & Benchmark
 
 - `just` — task runner; check for a `justfile` before guessing commands
@@ -48,6 +55,9 @@ Interactive zsh aliases `ls` to `eza` and `cat` to `bat`; use `\ls`, `\cat` or
 ### Data & HTTP
 
 - `jq`
+- `gron` — flattens JSON to one `path.to.key = value;` line each; `gron x.json | rg key`
+  finds where a field lives in large or unfamiliar JSON before writing a `jq` filter
+  (`gron -u` turns filtered lines back into JSON)
 - `yq` / `xq` — YAML / XML
 - `mlr` (miller) — CSV/TSV
 - `xh` — HTTP client
@@ -60,6 +70,8 @@ Interactive zsh aliases `ls` to `eza` and `cat` to `bat`; use `\ls`, `\cat` or
 
 ### Files & System
 
+- `tldr <cmd>` (tealdeer) — short example-based usage; check it before `man` or
+  long `--help` output when you only need the common flags
 - `dust` — disk usage (not a `du` drop-in: `-s` is apparent size, `-d` is depth)
 - `wl-copy` / `wl-paste` — Wayland clipboard. `wl-copy` forks a process that holds
   inherited stdout open, so redirect it (`… | wl-copy >/dev/null 2>&1`) or the
