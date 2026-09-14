@@ -32,6 +32,9 @@
     eza # ls
     dust # du
 
+    # benchmarking
+    hyperfine
+
     # language servers (helix); oxlint runs per repo via bunx
     typescript-language-server
     svelte-language-server
