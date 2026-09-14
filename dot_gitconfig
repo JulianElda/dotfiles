@@ -23,6 +23,8 @@
   navigate = true
   dark = true
 	side-by-side = true
+  # --mouse makes the wheel scroll the pager, not the terminal's scrollback
+  pager = less -FR --mouse --wheel-lines=3
 
 [merge]
   conflictStyle = zdiff3
