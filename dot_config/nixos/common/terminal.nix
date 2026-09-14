@@ -39,7 +39,6 @@
       # bat already acts like cat when piped; this keeps it pager- and
       # decoration-free in the terminal too, leaving only the highlighting.
       cat = "bat --paging=never --style=plain";
-      du = "dust";
     };
 
     history = {
