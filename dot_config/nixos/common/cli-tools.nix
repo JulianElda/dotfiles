@@ -35,6 +35,9 @@
     # benchmarking
     hyperfine
 
+    # clipboard: wl-copy / wl-paste; also lets helix paste from other apps
+    wl-clipboard
+
     # language servers (helix); oxlint runs per repo via bunx
     typescript-language-server
     svelte-language-server
