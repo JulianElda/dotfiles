@@ -23,6 +23,9 @@
     # typescript
     typescript
 
+    # file manager
+    yazi
+
     # pdf & ocr
     ocrmypdf
 
