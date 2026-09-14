@@ -17,6 +17,18 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    # compinit's security check (compaudit) stats every file in fpath on each
+    # start. Run it once a day; use the cached dump the rest of the time.
+    # (N.mh+24) = the dump exists, is a regular file, and is over 24 hours old.
+    # The glob is an anonymous function's argument because zsh does not expand
+    # globs inside [[ ]] -- there it is a literal, always-true string. compinit
+    # leaves an unchanged dump's mtime alone, so touch it after the full check.
+    completionInit = ''
+      autoload -Uz compinit
+      () {
+        if (( $# )); then compinit && touch ~/.zcompdump; else compinit -C; fi
+      } ~/.zcompdump(N.mh+24)
+    '';
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
