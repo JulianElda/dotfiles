@@ -3,40 +3,14 @@
 
 {
   home.packages = with pkgs; [
-    # dotfiles
-    chezmoi
-
-    # encryption
-    age
-    gocryptfs
-
-    # kleidos test dependency
-    dash
-
-    # git, ci & release
-    delta
-    difftastic
-    lefthook
-    actionlint
-    editorconfig-checker
-    goreleaser
-
-    # typescript
+    # languages & runtimes
+    nodejs_26
+    bun
     typescript
-
-    # file manager
-    yazi
-
-    # modern coreutils replacements
-    bat # cat
-    eza # ls
-    dust # du
-
-    # benchmarking
-    hyperfine
-
-    # clipboard: wl-copy / wl-paste; also lets helix paste from other apps
-    wl-clipboard
+    python3
+    uv
+    go
+    golangci-lint
 
     # language servers (helix); oxlint runs per repo via bunx
     typescript-language-server
@@ -49,37 +23,51 @@
     marksman
     taplo
 
-    # pdf & ocr
-    ocrmypdf
+    # git
+    delta
+    difftastic
+    github-cli # gh
+    lefthook
 
-    # ai coding agents
-    claude-code
+    # ci & release
+    actionlint
+    editorconfig-checker
+    goreleaser
 
-    # --- declared in ~/.claude/CLAUDE.md ---
-
-    # languages & runtimes
-    nodejs_26
-    bun
-    python3
-    uv
-    go
-    golangci-lint
+    # build, test & benchmark
     just
+    hyperfine
+    dash # kleidos test dependency
 
-    # data
+    # search & edit
+    ripgrep
+    fd
+    sd
+    ast-grep
+
+    # files & terminal
+    bat # cat
+    eza # ls
+    dust # du
+    yazi
+    wl-clipboard # wl-copy / wl-paste; lets helix paste from other apps
+
+    # data & http
     jq
     yq # provides xq
     miller
-
-    # media
-    poppler-utils # pdftotext
-
-    # dev utilities
-    ast-grep
-    sd
     xh
-    github-cli # gh
-    ripgrep
-    fd
+
+    # documents
+    poppler-utils # pdftotext
+    ocrmypdf
+
+    # dotfiles & secrets
+    chezmoi
+    age
+    gocryptfs
+
+    # ai coding agents
+    claude-code
   ];
 }
