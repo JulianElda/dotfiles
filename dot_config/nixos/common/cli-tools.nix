@@ -39,6 +39,10 @@
     hyperfine
     dash # kleidos test dependency
 
+    # shell scripts
+    shellcheck
+    shfmt
+
     # search & edit
     ripgrep
     fd
@@ -56,6 +60,7 @@
     jq
     yq # provides xq
     miller
+    gron
     xh
 
     # documents
@@ -70,4 +75,16 @@
     # ai coding agents
     claude-code
   ];
+
+  # nix-index with the prebuilt database from the nix-index-database flake
+  # input, plus comma: `, <cmd>` runs a program without installing it.
+  programs.nix-index.enable = true;
+  programs.nix-index-database.comma.enable = true;
+
+  # tldr: tealdeer ships no pages; auto_update fetches the cache on first use
+  # and refreshes it when stale, so `tldr <cmd>` never fails on an empty cache.
+  programs.tealdeer = {
+    enable = true;
+    settings.updates.auto_update = true;
+  };
 }

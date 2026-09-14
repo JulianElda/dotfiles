@@ -14,9 +14,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    # Prebuilt weekly nix-index database, so comma works without a local index.
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, plasma-manager, ... }:
+  outputs = { self, nixpkgs, home-manager, plasma-manager, nix-index-database, ... }:
     let
       inherit (nixpkgs) lib;
 
@@ -46,6 +52,7 @@
             home-manager.users.julian = import ./hosts/${host}/home.nix;
             home-manager.sharedModules = [
               plasma-manager.homeModules.plasma-manager
+              nix-index-database.homeModules.nix-index
             ];
           })
         ];
