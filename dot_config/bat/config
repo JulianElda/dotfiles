@@ -1,0 +1,3 @@
+# Ayu Mirage, matching Helix and Ghostty. The theme lives in ./themes and must be
+# compiled once per machine with `bat cache --build`.
+--theme="ayu-mirage"
