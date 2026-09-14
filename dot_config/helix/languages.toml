@@ -1,0 +1,96 @@
+# ---------------------------------------------------------------------------
+# Language server definitions
+# ---------------------------------------------------------------------------
+
+# ESLint, for the Svelte packages that carry an eslint.config.js. Defined under
+# its own name because Helix's built-in vscode-eslint-language-server entry sets
+# useFlatConfig = false, which ESLint 10 no longer supports. "auto"
+# working-directory lets each package in a monorepo resolve its own config.
+[language-server.eslint]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
+[language-server.eslint.config]
+validate = "on"
+run = "onType"
+nodePath = ""
+rulesCustomizations = []
+problems = { shortenToSingleLine = false }
+workingDirectory = { mode = "auto" }
+codeAction.disableRuleComment = { enable = true, location = "separateLine" }
+codeAction.showDocumentation = { enable = true }
+
+# oxlint's built-in LSP. bunx runs the oxlint pinned in the repo's node_modules,
+# so the editor and CI agree on the version; --no-install stops it downloading
+# the latest release when a project has none.
+[language-server.oxlint]
+command = "bunx"
+args = ["--no-install", "oxlint", "--lsp"]
+
+# Tailwind v4 (CSS-based config, no tailwind.config.js).
+[language-server.tailwindcss]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+
+# YAML: SchemaStore validates GitHub workflows, lefthook, golangci-lint and
+# goreleaser configs without per-file setup.
+[language-server.yaml-language-server.config.yaml]
+validate = true
+completion = true
+hover = true
+format = { enable = true }
+
+[language-server.yaml-language-server.config.yaml.schemaStore]
+enable = true
+url = "https://www.schemastore.org/api/json/catalog.json"
+
+# ---------------------------------------------------------------------------
+# Language wiring
+#
+# NOTE: `language-servers` REPLACES the built-in list, so the defaults that
+# should stay active are repeated explicitly here. Go keeps Helix's defaults
+# (gopls + golangci-lint-lsp) and needs no block.
+# ---------------------------------------------------------------------------
+
+[[language]]
+name = "typescript"
+language-servers = ["typescript-language-server", "oxlint", "eslint"]
+
+[[language]]
+name = "javascript"
+language-servers = ["typescript-language-server", "oxlint", "eslint"]
+
+[[language]]
+name = "tsx"
+language-servers = ["typescript-language-server", "oxlint", "eslint", "tailwindcss"]
+
+[[language]]
+name = "jsx"
+language-servers = ["typescript-language-server", "oxlint", "eslint", "tailwindcss"]
+
+[[language]]
+name = "svelte"
+language-servers = ["svelteserver", "eslint", "tailwindcss"]
+
+[[language]]
+name = "css"
+language-servers = ["vscode-css-language-server", "tailwindcss"]
+
+# Drop superhtml from the default list; it is not installed.
+[[language]]
+name = "html"
+language-servers = ["vscode-html-language-server", "tailwindcss"]
+
+# Drop ansible-language-server from the default list; it is not installed.
+[[language]]
+name = "yaml"
+language-servers = ["yaml-language-server"]
+
+# Trim uninstalled alternates so `hx --health` stays readable.
+[[language]]
+name = "markdown"
+language-servers = ["marksman"]
+
+[[language]]
+name = "toml"
+language-servers = ["taplo"]

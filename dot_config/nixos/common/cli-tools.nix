@@ -26,6 +26,17 @@
     # file manager
     yazi
 
+    # language servers (helix); oxlint runs per repo via bunx
+    typescript-language-server
+    svelte-language-server
+    vscode-langservers-extracted # css, html, json, eslint
+    tailwindcss-language-server
+    gopls
+    golangci-lint-langserver
+    yaml-language-server
+    marksman
+    taplo
+
     # pdf & ocr
     ocrmypdf
 
