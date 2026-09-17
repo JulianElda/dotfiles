@@ -1,0 +1,14 @@
+# pragma
+#
+# Singletons only. Anything that multiplies — repos, packages, branches — is
+# discovered at run time, never listed here.
+
+# The plans repo. The one place this path is written outside the permission rules.
+root = "~/workspace/pragma"
+
+# Search roots for resolving a repo the user names ("in oikos", "for kleidos").
+# A repo outside these is still reachable: a plan carries its own `path`.
+workspace = ["~/workspace"]
+
+# Subdirectory names probed inside a repo to resolve <repo>-<package>, in order.
+package-dirs = ["packages"]

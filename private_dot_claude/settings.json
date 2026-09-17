@@ -1,4 +1,5 @@
 {
+  "includeCoAuthoredBy": true,
   "permissions": {
     "allow": [
       "Bash(git log *)",
@@ -25,7 +26,8 @@
       "Bash(uv tool list *)",
       "Bash(uvx ruff *)",
       "Bash(uvx ty *)",
-      "Bash(uvx --with pyyaml ty *)"
+      "Bash(uvx --with pyyaml ty *)",
+      "Bash(pragma:*)"
     ],
     "deny": [
       "Read(**/.env)",
@@ -41,7 +43,6 @@
     "defaultMode": "auto"
   },
   "model": "opus",
-  "includeCoAuthoredBy": true,
   "hooks": {
     "PreToolUse": [
       {
@@ -63,7 +64,8 @@
   "enabledPlugins": {
     "context7@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": true,
-    "receipts@claude-plugins-official": false
+    "receipts@claude-plugins-official": false,
+    "gopls-lsp@claude-plugins-official": true
   },
   "outputStyle": "Explanatory",
   "effortLevel": "high",
