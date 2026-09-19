@@ -3,10 +3,18 @@
 # Singletons only. Anything that multiplies — repos, packages, branches — is
 # discovered at run time, never listed here.
 
-# The plans repo. The one place this path is written outside the permission rules.
-root = "~/workspace/pragma"
+# The plans and the log. A cloud-synced folder; not versioned, not this
+# checkout. This file is managed by chezmoi, so this path lands on every
+# machine: check it after `chezmoi apply` on a machine whose sync folder sits
+# somewhere else, and either point that machine's copy elsewhere or symlink
+# this path at the real folder.
+content = "~/Dropbox/pragma"
 
-# Search roots for resolving a repo the user names ("in oikos", "for kleidos").
+# This project's checkout: the pragma command, the skills, and SPEC.md, which
+# `pragma spec` reads from here.
+source = "~/workspace/pragma"
+
+# Search roots for resolving a repo the user names ("in core", "for otherrepo").
 # A repo outside these is still reachable: a plan carries its own `path`.
 workspace = ["~/workspace"]
 
