@@ -37,7 +37,6 @@
     # build, test & benchmark
     just
     hyperfine
-    dash # kleidos test dependency
 
     # shell scripts
     shellcheck

@@ -105,6 +105,13 @@
   # /etc/zshrc ran its ~25ms security audit a second time on every shell start.
   # Completions (nix-zsh-completions, /share/zsh linking) stay enabled.
   programs.zsh.enableGlobalCompInit = false;
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
+
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     stdenv.cc.cc.lib
