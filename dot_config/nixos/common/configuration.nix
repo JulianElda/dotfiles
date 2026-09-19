@@ -76,6 +76,7 @@
   fonts.packages = with pkgs; [
     noto-fonts
     ibm-plex
+    (iosevka-bin.override { variant = "SS13"; })
   ];
 
   users.defaultUserShell = pkgs.zsh;
