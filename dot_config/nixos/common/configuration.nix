@@ -75,7 +75,6 @@
 
   fonts.packages = with pkgs; [
     noto-fonts
-    iosevka
     ibm-plex
   ];
 

@@ -4,7 +4,7 @@
 {
   home.packages = with pkgs; [
     # languages & runtimes
-    nodejs_26
+    nodejs
     bun
     typescript
     python3
