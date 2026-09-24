@@ -17,8 +17,6 @@
     VISUAL = "hx";
     EDITOR = "hx";
     BUN_INSTALL = "$HOME/.bun";
-    PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
-    PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS = "true";
   };
   
   home.sessionPath = [
