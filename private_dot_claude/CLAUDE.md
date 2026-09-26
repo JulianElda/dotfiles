@@ -111,3 +111,10 @@ Dotfiles are managed with `chezmoi`. The source repo is `~/.local/share/chezmoi`
   compiled into `~/.cache/bat`, which chezmoi does not manage. Run `bat cache --build`
   after adding or changing a theme, on a fresh machine after `chezmoi apply`, and
   when bat warns about an outdated cache after a nixpkgs update.
+
+## Knowledge (ontos)
+
+- Repo knowledge (how code is laid out, works, and breaks) goes in ontos; `ontos context` loads
+  it at session start.
+- Personal preferences and feedback go in auto memory, not ontos.
+- Plans and open work don't go in ontos.
