@@ -149,10 +149,13 @@ Then, with git and chezmoi now installed by the config:
   # confirm the permanent copy builds the same system
   sudo nixos-rebuild switch --flake ~/.config/nixos#$HOST
 
+  # log in to Dropbox and let it sync, then: SSH key, GitHub, ~/workspace, tools
+  ~/.local/share/chezmoi/post-install.sh
+
   # then publish the new host
   cd ~/.local/share/chezmoi
-  git remote set-url origin git@github.com:$REPO_USER/$REPO_NAME.git
   git add -A $NIX_SUBDIR && git commit -m "feat(nixos): add $HOST" && git push
+  rm -rf $KEEP_DIR
 
-Finally work through ~/installation-checklist.md.
+Finally work through ~/.local/share/chezmoi/installation-checklist.md.
 EOF
