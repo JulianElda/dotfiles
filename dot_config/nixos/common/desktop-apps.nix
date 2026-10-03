@@ -22,6 +22,7 @@
     cryptomator
     dropbox
     keepassxc
+    simple-scan
 
     # kde apps
     kdePackages.ark
@@ -30,7 +31,6 @@
     kdePackages.calligra
     kdePackages.okular
     kdePackages.partitionmanager
-    kdePackages.skanpage
     kdePackages.spectacle
     kdePackages.plasma-vault
   ];

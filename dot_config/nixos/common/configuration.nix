@@ -64,8 +64,6 @@
     unzip
     curl
     wget
-    gutenprint
-    ipp-usb
     docker-compose
   ];
   
@@ -81,7 +79,17 @@
 
   users.defaultUserShell = pkgs.zsh;
 
-  services.printing.enable = true;
+  # Canon PIXMA TS3500 over USB. Its USB printer interface has no IPP-over-USB
+  # (protocol 4), so ipp-usb cannot make it driverless; gutenprint stops at the
+  # TS31xx. Canon's own cnijfilter2 ships canonts3500.ppd.
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.cnijfilter2 ];
+  };
+  # Its scanner is covered by sane-backends' pixma backend; the scanner and lp
+  # groups below grant access to the USB device.
+  hardware.sane.enable = true;
+
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -96,7 +104,7 @@
   users.users."julian" = {
     isNormalUser = true;
     description = "Julian";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "scanner" "lp" ];
     shell = pkgs.zsh;
   };
 
