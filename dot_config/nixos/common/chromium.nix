@@ -8,7 +8,7 @@
     extraOptsRecommended = {
       # sign-in & sync
       BrowserSignin = 0;
-      SyncDisabled = true;
+      SyncDisabled = false;
       MetricsReportingEnabled = false;
 
       # passwords, autofill & payments are keepassxc's job
