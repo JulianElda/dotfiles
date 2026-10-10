@@ -16,6 +16,7 @@
 
     # media
     audacious
+    darktable
     vlc
 
     # files, documents, secrets
@@ -28,6 +29,7 @@
     kdePackages.ark
     kdePackages.kate
     kdePackages.kcalc
+    kdePackages.koko
     kdePackages.calligra
     kdePackages.okular
     kdePackages.partitionmanager

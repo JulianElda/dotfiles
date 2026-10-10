@@ -71,6 +71,10 @@
     pkgs.kdePackages.elisa
   ];
 
+  # plasma6 enables the KDE PIM suite (KMail, Kontact, Merkuro, Akonadi) by
+  # default; it installs via systemPackages, so excludePackages can't drop it.
+  programs.kde-pim.enable = false;
+
   fonts.packages = with pkgs; [
     noto-fonts
     ibm-plex
