@@ -242,4 +242,12 @@
 
     };
   };
+
+  # Baloo starts before KWin exports WAYLAND_DISPLAY, so its file extractor
+  # finds no display and aborts; it never draws a window, so skip the display.
+  # A drop-in, not systemd.user.services: that would shadow the upstream unit.
+  xdg.configFile."systemd/user/kde-baloo.service.d/qt-offscreen.conf".text = ''
+    [Service]
+    Environment=QT_QPA_PLATFORM=offscreen
+  '';
 }
