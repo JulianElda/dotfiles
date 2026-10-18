@@ -51,6 +51,9 @@
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
   services.displayManager.defaultSession = "plasma";
+  # Qt's QML cache keys on path + mtime, and Nix store files all share mtime 1,
+  # so a Plasma upgrade otherwise leaves SDDM running the previous theme.
+  systemd.services.display-manager.preStart = "rm -rf /var/lib/sddm/.cache";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
