@@ -65,6 +65,7 @@
     # documents
     poppler-utils # pdftotext
     ocrmypdf
+    exiftool # read/write image, pdf & media metadata
 
     # dotfiles & secrets
     chezmoi

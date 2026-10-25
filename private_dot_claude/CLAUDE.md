@@ -67,6 +67,8 @@ Interactive zsh aliases `ls` to `eza` and `cat` to `bat`; use `\ls`, `\cat` or
 
 - `pdftotext`
 - `ocrmypdf` — add a text layer to scanned PDFs before `pdftotext`
+- `exiftool` — read/write image, PDF & media metadata (`exiftool -all= file`
+  strips it)
 
 ### Files & System
 
