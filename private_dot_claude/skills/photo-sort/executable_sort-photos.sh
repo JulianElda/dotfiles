@@ -44,11 +44,19 @@ tag=TestName
 # filtered out. A file with no date at all still warns about CreateDate and
 # "No writable tags set". Don't reach for -m instead: it turns a missing tag
 # into an empty string, so files get renamed to "_<name>".
+#
+# Only stderr goes through the filter. exiftool block-buffers stdout but not
+# stderr, so with 2>&1 a warning lands mid-way through a move line and the
+# filter drops the whole spliced line, hiding moves from the dry run.
+status=0
 # shellcheck disable=SC2016 # the $ expressions are exiftool's, not bash's
-"${exiftool[@]}" -ext orf -ext ori -ext jpg -ext mov -ext wav \
-  -if 'not $FileName =~ /^\d{4}-\d\d-\d\d-\d{6}_/' \
-  -d '%m_%Y/%Y-%m-%d-%H%M%S' \
-  "-$tag"'<%d${CreateDate}_%f.%le' \
-  "-$tag"'<%d${DateTimeOriginal}_%f.%le' \
-  "$dir" 2>&1 | { rg -v "Tag 'DateTimeOriginal' not defined" || true; }
-exit "${PIPESTATUS[0]}"
+{
+  "${exiftool[@]}" -ext orf -ext ori -ext jpg -ext mov -ext wav \
+    -if 'not $FileName =~ /^\d{4}-\d\d-\d\d-\d{6}_/' \
+    -d '%m_%Y/%Y-%m-%d-%H%M%S' \
+    "-$tag"'<%d${CreateDate}_%f.%le' \
+    "-$tag"'<%d${DateTimeOriginal}_%f.%le' \
+    "$dir" 2>&1 1>&3 3>&- |
+    { rg -v "Tag 'DateTimeOriginal' not defined" >&2 || true; }
+} 3>&1 || status=$? # pipefail carries exiftool's status; the filter never fails
+exit "$status"
