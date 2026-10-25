@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Rename camera files (ORF/ORI/JPG stills, MOV movies, WAV voice notes) to
 # YYYY-MM-DD-HHMMSS_<name>.<ext> and move them into MM_YYYY/ inside the same
-# folder, dated by when they were shot.
+# folder, dated by when they were shot. Phone photos that arrive already named
+# "YYYY-MM-DD HH.MM.SS.jpg" get the camera model as <name> instead.
 # Dry run by default; --apply moves the files. Sidecar .xmp files are untouched.
 set -euo pipefail
 
@@ -40,7 +41,14 @@ tag=TestName
 # spec asks for, so it must not be converted (exiftool's default). The file
 # modification time is never used: it reads ~2 hours off after the card copy.
 #
-# Every movie warns "Tag 'DateTimeOriginal' not defined", so that line is
+# The last assignment covers phone photos already named after their date: the
+# original name would only repeat the date, so the model (spaces and slashes
+# made hyphens) takes its place. For every other file the expression returns
+# undef and the assignment drops out. %-c appends -1, -2 when two phone shots
+# share a second; camera files keep refusing collisions so duplicates surface.
+#
+# Movies warn that DateTimeOriginal is undefined and non-phone files that the
+# Model expression returned undef; both are expected, so those lines are
 # filtered out. A file with no date at all still warns about CreateDate and
 # "No writable tags set". Don't reach for -m instead: it turns a missing tag
 # into an empty string, so files get renamed to "_<name>".
@@ -48,15 +56,18 @@ tag=TestName
 # Only stderr goes through the filter. exiftool block-buffers stdout but not
 # stderr, so with 2>&1 a warning lands mid-way through a move line and the
 # filter drops the whole spliced line, hiding moves from the dry run.
-status=0
 # shellcheck disable=SC2016 # the $ expressions are exiftool's, not bash's
+phone='$_ = $self->GetValue("FileName") =~ /^\d{4}-\d\d-\d\d \d\d\.\d\d\.\d\d\b/ ? s/[ \/]+/-/gr : undef'
+status=0
+# shellcheck disable=SC2016
 {
   "${exiftool[@]}" -ext orf -ext ori -ext jpg -ext mov -ext wav \
     -if 'not $FileName =~ /^\d{4}-\d\d-\d\d-\d{6}_/' \
     -d '%m_%Y/%Y-%m-%d-%H%M%S' \
     "-$tag"'<%d${CreateDate}_%f.%le' \
     "-$tag"'<%d${DateTimeOriginal}_%f.%le' \
+    "-$tag"'<%d${DateTimeOriginal}_${Model;'"$phone"'}%-c.%le' \
     "$dir" 2>&1 1>&3 3>&- |
-    { rg -v "Tag 'DateTimeOriginal' not defined" >&2 || true; }
+    { rg -v "Tag 'DateTimeOriginal' not defined|Advanced formatting expression returned undef for 'Model'" >&2 || true; }
 } 3>&1 || status=$? # pipefail carries exiftool's status; the filter never fails
 exit "$status"

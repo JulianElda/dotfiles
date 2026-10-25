@@ -1,6 +1,6 @@
 ---
 name: photo-sort
-description: Rename camera files (raw .ORF/.ORI, .JPG, .MOV movies, .WAV voice notes) to YYYY-MM-DD-HHMMSS_<original name>.<ext> from when they were shot, and move them into MM_YYYY folders inside the same source folder. Use when Julian points at a folder of photos or videos off the camera (e.g. ~/Pictures/100OLYMP) and asks to rename, sort, organize, file or date them by month.
+description: Rename camera files (raw .ORF/.ORI, .JPG, .MOV movies, .WAV voice notes) and phone JPEGs to YYYY-MM-DD-HHMMSS_<original name or phone model>.<ext> from when they were shot, and move them into MM_YYYY folders inside the same source folder. Use when Julian points at a folder of photos or videos off the camera or phone (e.g. ~/Pictures/100OLYMP) and asks to rename, sort, organize, file or date them by month.
 ---
 
 # Photo sort
@@ -22,6 +22,14 @@ The formats come from the Olympus E-M1 Mark III manual:
   should be UTC, so no time-zone conversion is applied. The file's modification
   time is never used.
 - The original name is kept, and the extension is lowercased.
+- **Phone photos are the exception.** They arrive already named after their
+  capture time, like `2026-10-17 16.13.01.JPG` (Sony Xperia `XQ-ES54`, with a
+  correct `DateTimeOriginal` and a +02:00 offset). Keeping that name would only
+  repeat the date, so the EXIF `Model` takes its place, with spaces and
+  slashes turned into hyphens:
+  `10_2026/2026-10-17-161301_XQ-ES54.jpg`. Phone photos are recognised by that
+  name pattern, not by brand, so a new phone works too. Two phone shots taken
+  in the same second get `-1`, `-2` suffixes.
 - Only those five extensions, at the top level of the folder, are touched.
   Leave `.xmp` sidecars and every other file where they are: Julian wants it
   that way.
@@ -45,6 +53,10 @@ The formats come from the Olympus E-M1 Mark III manual:
    - `already exists`: a file with the target name is already in the month
      folder, which is usually a second copy of the same shot. Nothing gets
      overwritten. Compare the two with `cmp` and tell Julian what you found.
+     Phone photos never raise this error, because they get a `-1` suffix
+     instead. If a dry run shows a phone photo with a `-N` suffix, `cmp` it
+     against the file it would sit next to, so a duplicate copy isn't filed
+     twice without anyone noticing.
 
 ## Behaviour to rely on
 
