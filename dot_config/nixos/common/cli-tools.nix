@@ -67,6 +67,9 @@
     ocrmypdf
     exiftool # read/write image, pdf & media metadata
 
+    # media
+    ffmpeg # includes ffprobe & ffplay
+
     # dotfiles & secrets
     chezmoi
     age
