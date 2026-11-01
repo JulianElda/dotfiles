@@ -7,6 +7,10 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "markdown_preview": {
+    "font_family": "IBM Plex Sans",
+    "code_font_family": "IBM Plex Mono",
+  },
   "drag_and_drop_selection": {
     "enabled": false,
   },
@@ -53,8 +57,6 @@
   "rounded_selection": true,
   "current_line_highlight": "gutter",
   "hide_mouse": "never",
-  "markdown_preview_code_font_family": "IBM Plex Mono",
-  "markdown_preview_font_family": "IBM Plex Sans",
   "ui_font_family": "IBM Plex Sans",
   "icon_theme": {
     "mode": "system",
@@ -114,7 +116,7 @@
   "tab_size": 2,
   "base_keymap": "VSCode",
   "ui_font_size": 18,
-  "buffer_font_size": 18.0,
+  "buffer_font_size": 22.0,
   "theme": {
     "mode": "system",
     "light": "Ayu Light",
