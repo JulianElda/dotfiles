@@ -207,7 +207,7 @@
       kdeglobals.General.TerminalApplication = "ghostty --gtk-single-instance=true";
       kdeglobals.General.TerminalService = "com.mitchellh.ghostty.desktop";
       kdeglobals.General.UseSystemBell = true;
-      kdeglobals.KDE.AnimationDurationFactor = 0;
+      kdeglobals.KDE.AnimationDurationFactor = 1;
       kdeglobals.KDE.contrast = 4;
       kdeglobals.KDE.frameContrast = 0.2;
       kdeglobals.PreviewSettings.EnableRemoteFolderThumbnail = false;
