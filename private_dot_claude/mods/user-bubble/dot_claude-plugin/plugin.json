@@ -1,0 +1,5 @@
+{
+  "name": "user-bubble",
+  "version": "0.1.0",
+  "description": "Draws your own messages as a full-width filled panel with rounded half-block edges and bold text"
+}

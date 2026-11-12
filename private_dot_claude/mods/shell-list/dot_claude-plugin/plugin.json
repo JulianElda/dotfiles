@@ -1,0 +1,6 @@
+{
+  "name": "shell-list",
+  "version": "0.1.0",
+  "description": "Lists the commands of a folded tool group instead of \"ran N shell commands\"; click one to see its output",
+  "types": "./types/index.d.ts"
+}

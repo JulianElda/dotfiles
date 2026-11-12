@@ -1,0 +1,5 @@
+{
+  "name": "insight-panel",
+  "version": "0.1.0",
+  "description": "Draws ★ Insight blocks and fenced code blocks in bordered panels, shell with zsh colours"
+}

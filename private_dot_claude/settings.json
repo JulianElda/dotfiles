@@ -90,5 +90,8 @@
   },
   "theme": "custom:ayu-mirage",
   "editorMode": "normal",
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "env": {
+    "CLAUDE_CODE_PLUGIN_DIRS": "~/.claude/mods/insight-panel:~/.claude/mods/shell-list:~/.claude/mods/user-bubble"
+  }
 }
