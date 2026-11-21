@@ -105,6 +105,13 @@ in
       TELEMACHOS_HOST = "0.0.0.0"; # inside the container only; published on 127.0.0.1 below
       TELEMACHOS_PORT = port;
       TELEMACHOS_REPO_ROOTS = "~/workspace";
+      # Items, the logs and comments, shared with every machine through Dropbox.
+      TELEMACHOS_CONTENT = "~/Dropbox/telemachos";
+      # chats.json stays on this machine: its sessions only resume from this ~/.claude.
+      TELEMACHOS_STATE = "~/workspace/telemachos/data";
+      # Names this machine's log and comment files in the shared folder; unique per machine.
+      # Not the default hostname(): inside the container that is the container id.
+      TELEMACHOS_MACHINE = config.networking.hostName;
       TELEMACHOS_ACCESS_TEAM = "https://calm-bonus-2b28.cloudflareaccess.com";
       TELEMACHOS_ACCESS_AUD = "6b478afaa0268205c324283837b44359843394d7b83d7d5aaa41f7f4dab46f0e";
       TELEMACHOS_OWNER_EMAIL = "julius.polar@gmail.com";
@@ -127,8 +134,10 @@ in
       # Login, settings, transcripts. Same paths as on the host, or --resume finds nothing.
       (bind "${home}/.claude")
       "--mount=type=bind,src=${home}/.claude.json,dst=/run/host/claude.json,readonly"
-      # TELEMACHOS_REPO_ROOTS, which holds this repo and its data/ (TELEMACHOS_CONTENT).
+      # TELEMACHOS_REPO_ROOTS, which holds this repo and its data/ (TELEMACHOS_STATE).
       (bind "${home}/workspace")
+      # TELEMACHOS_CONTENT, synced by the host's Dropbox.
+      (bind "${home}/Dropbox/telemachos")
       # git and gh.
       (bindRo "${home}/.gitconfig")
       (bindRo "${home}/.config/git")
