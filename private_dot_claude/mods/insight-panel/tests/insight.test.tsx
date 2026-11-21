@@ -84,3 +84,21 @@ test('another language goes to the Code element, a plain block stays plain', asy
   expect(codes.map(c => c.text)).toEqual(['{ "a": 1 }', 'a/\n└── b'])
   await ui.unmount()
 })
+
+test('a code block has round-cornered rules above and below and no box, so a copy takes no │', async ($, on) => {
+  on('ui.render', ($, e) => {
+    const { Text } = $.ui.resolve(e)
+
+    return <Text>engine</Text>
+  })
+
+  const reply = ['```bash', 'echo one', 'echo two', '```', '', '```json', '{ "a": 1 }', '```'].join('\n')
+  const ui = await $.ui.mount({ ...message(reply), surface: 'terminal' })
+  const boxes = await ui.findAll({ type: 'Box' })
+
+  expect(boxes.filter(b => b.props.borderStyle !== undefined)).toHaveLength(0)
+  expect(await ui.findAll({ type: 'Text', text: /^─+$/ })).toHaveLength(4)
+  const corners = await ui.findAll({ type: 'Text', text: /^[╭╮╰╯]$/ })
+  expect(corners.map(c => c.text).join('')).toBe('╭╮╰╯╭╮╰╯')
+  await ui.unmount()
+})

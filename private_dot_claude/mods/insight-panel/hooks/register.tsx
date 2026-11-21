@@ -4,10 +4,16 @@ import { split } from './parse'
 import { tokenize } from './shell-highlight'
 import type { TokenKind } from './shell-highlight'
 
-// Panel frames, from ayu-mirage: green for insights, purple for code blocks.
+// From ayu-mirage: a green frame for insights, purple rules for code blocks.
 // (shell-list's command boxes are blue, #a2deff.)
 const GREEN = '#87d96c' // vcs.added, the theme's success colour
 const PURPLE = '#dfbfff' // syntax.constant
+// PURPLE half-blended into the theme's background (#1f2430), standing in for
+// borderDimColor on the code rules, which are Text, not a border.
+const PURPLE_DIM = '#7f7197'
+// Longer than any terminal is wide; a one-row clipping Box cuts it to fit
+// (`wrap="truncate"` would end it in `…`).
+const RULE = '─'.repeat(512)
 
 // zsh-syntax-highlighting's default styles in the terminal's own palette, as
 // in shell-list: a shell block reads like the prompt it gets pasted into.
@@ -53,16 +59,43 @@ export const register: Register = on => {
     if (segments.every(s => s.kind === 'text')) return next(e)
 
     const { Box, Text, Markdown, Code } = $.ui.resolve(e)
-    const panel = (children: RenderChildren, color = GREEN) => (
+    const panel = (children: RenderChildren) => (
       <Box
         flexDirection="column"
         borderStyle="round"
-        borderColor={color}
+        borderColor={GREEN}
         borderDimColor
         paddingX={1}
         marginLeft={2}
       >
         {children}
+      </Box>
+    )
+    // Code blocks get a rule above and below instead of a box: a box's side
+    // `│`s sit on every line, so a multi-line selection copies them with the
+    // code. The rules carry the round corners, one column left of the code,
+    // so the code keeps the 2-column indent of the reply text.
+    const rule = (left: string, right: string) => (
+      <Box flexDirection="row">
+        <Box flexShrink={0}>
+          <Text color={PURPLE_DIM}>{left}</Text>
+        </Box>
+        {/* Shrinks to the room between the corners; one row, the rest clipped. */}
+        <Box flexGrow={1} flexShrink={1} height={1} overflow="hidden">
+          <Text color={PURPLE_DIM}>{RULE}</Text>
+        </Box>
+        <Box flexShrink={0}>
+          <Text color={PURPLE_DIM}>{right}</Text>
+        </Box>
+      </Box>
+    )
+    const codePanel = (children: RenderChildren) => (
+      <Box flexDirection="column" marginLeft={1}>
+        {rule('╭', '╮')}
+        <Box flexDirection="column" marginLeft={1}>
+          {children}
+        </Box>
+        {rule('╰', '╯')}
       </Box>
     )
     const children = []
@@ -87,7 +120,7 @@ export const register: Register = on => {
         )
       } else if (s.kind === 'code' && isShell(s.lang, s.text)) {
         children.push(
-          panel(
+          codePanel(
             s.text.split('\n').map(line => {
               const prompt = PROMPT.exec(line)
               const rest = prompt ? line.slice(prompt[0].length) : line
@@ -101,12 +134,11 @@ export const register: Register = on => {
                 </Text>
               )
             }),
-            PURPLE,
           ),
         )
       } else if (s.kind === 'code') {
         // Any other language: Claude Code's own highlighter; unlabelled, plain.
-        children.push(panel(<Code source={s.text} language={s.lang || undefined} />, PURPLE))
+        children.push(codePanel(<Code source={s.text} language={s.lang || undefined} />))
       } else if (i === 0) {
         // The engine draws the leading text, so the reply keeps its bullet.
         children.push(await next({ ...e, props: { ...e.props, text: s.text } }))
