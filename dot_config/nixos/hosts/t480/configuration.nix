@@ -4,6 +4,7 @@
   imports = [
     ../../common/configuration.nix
     ./hardware.nix
+    ./telemachos.nix
   ];
 
   networking.hostName = "t480";
